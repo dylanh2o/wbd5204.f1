@@ -28,29 +28,47 @@ const StyledList = styled.ul`
 	}
 `;
 
-const List = ({todos, removeTodo}) => (
-	<StyledList>
-		{todos.length > 0 ? (
-			<>
-				{todos.map((todo, index) => (
+const List = ({todos, removeTodo}) => {
+	var visible= false;
 
-					<li key={index}>
+	const showModal = () =>{
 
-						<Modal  open='false'>
-							{todo}
-						</Modal>
-							<span>{todo}</span>
+			visible = true;
 
-						<a href="#" onClick={() => removeTodo(index)}>X</a>
-					</li>
-				))}
-			</>
-		) : (
-			<p style={{textAlign: 'center'}}>Nothing to Do</p>
 
-		)}
-	</StyledList>
+	};
 
-);
+
+	return (
+
+		<StyledList>
+			{todos.length > 0 ? (
+				<>
+					{todos.map((todo, index) => (
+
+						<li key={index}>
+
+							<a  onClick={() => showModal()}>
+								{todo}
+							</a>
+							<Modal visible={visible}
+							       onClose='true'
+							       onOk='true'>
+								{todo}
+							</Modal>
+
+
+							<a href="#" onClick={() => removeTodo(index)}>X</a>
+						</li>
+					))}
+				</>
+			) : (
+				<p style={{textAlign: 'center'}}>Nothing to Do</p>
+
+			)}
+		</StyledList>
+
+	);
+};
 
 export default List;

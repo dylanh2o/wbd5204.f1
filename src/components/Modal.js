@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
-
+import Button from "./Button";
 
 const StyledModal = styled.div`
 	cursor: pointer;
-	display:  ${props => props.open ? 'flex' : 'none'};
+	display:   ${props => props.visible ? 'flex' : 'none'};
 	align-items: center;
 	justify-content: centerM
 	position: fixed; 
@@ -18,25 +18,22 @@ const StyledModal = styled.div`
 	background-color: rgba(0,0,0,0.4);
 	`;
 
-const Modal = ({open, children}) => {
+const Modal = ({visible,onClose,onOk,title, children}) => {
 
-
-alert(open);
-	const onClose = () => {
-		alert(open);
-		open = false;
-	};
 	return (
 		<>
 
 			<StyledModal
-				open={open}
+				visible={visible}
+				onClose={onClose}
+				onOk={onOk}
 			>
 
-				<div id="monModal">
-
-					<div class="modal-content">
-						<a id="closeModal" onClick={() => onClose()}>X</a>
+				<div id="MyModal">
+					{title}
+					<div id="contentModal">
+						<Button id="okModal" onClick={() => onOk()}>Ok</Button>
+						<Button id="closeModal" onClick={() => onClose()}>Close</Button>
 						<p>{children}</p>
 					</div>
 				</div>
