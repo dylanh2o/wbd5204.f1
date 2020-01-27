@@ -36,7 +36,9 @@ const List = ({todos, removeTodo}) => (
 
 					<li key={index}>
 
-						<Modal>{todo}</Modal>
+						<Modal  open='false'>
+							{todo}
+						</Modal>
 							<span>{todo}</span>
 
 						<a href="#" onClick={() => removeTodo(index)}>X</a>

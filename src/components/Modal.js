@@ -11,33 +11,33 @@ const StyledModal = styled.div`
 	z-index: 1; 
 	left: 0;
 	top: 0;
-	width: 100%; 
-	height: 100%; 
+	width: 30%; 
+	height: 30%; 
 	overflow: auto; 
 	background-color: rgb(0,0,0);
 	background-color: rgba(0,0,0,0.4);
 	`;
 
-const Modal = ({open = false, children}) => {
+const Modal = ({open, children}) => {
 
-	const openModal = () => {
-		open = true;
-	};
-	const closeModal = () => {
+
+alert(open);
+	const onClose = () => {
+		alert(open);
 		open = false;
 	};
-
 	return (
 		<>
-			<button id="btnModal" onClick={() => openModal()}> {children}</button>
+
 			<StyledModal
-			open={open}
+				open={open}
 			>
-				<div id="monModal" class="modal">
+
+				<div id="monModal">
 
 					<div class="modal-content">
-						<a id="closeModal" onClick={() => closeModal()}>X</a>
-						<p>test</p>
+						<a id="closeModal" onClick={() => onClose()}>X</a>
+						<p>{children}</p>
 					</div>
 				</div>
 			</StyledModal>
