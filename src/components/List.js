@@ -29,15 +29,15 @@ const StyledList = styled.ul`
 `;
 
 const List = ({todos, removeTodo}) => {
-	var visible= false;
 
-	const showModal = () =>{
+	const [modalVisible, setModalVisible] = useState(false)
 
-			visible = true;
+	const handleCancel = () => setModalVisible(false);
 
-
+	const handleOk = () => {
+		alert('ok');
+		setModalVisible(false);
 	};
-
 
 	return (
 
@@ -48,15 +48,17 @@ const List = ({todos, removeTodo}) => {
 
 						<li key={index}>
 
-							<a  onClick={() => showModal()}>
-								{todo}
-							</a>
-							<Modal visible={visible}
-							       onClose='true'
-							       onOk='true'>
+
+							<Modal visible={modalVisible}
+							       title='Hello'
+							       onCancel={handleCancel}
+							       onOk={handleOk}>
 								{todo}
 							</Modal>
 
+							<a onClick={() => setModalVisible(true)}>
+								{todo}
+							</a>
 
 							<a href="#" onClick={() => removeTodo(index)}>X</a>
 						</li>

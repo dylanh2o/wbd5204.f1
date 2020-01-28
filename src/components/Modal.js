@@ -1,45 +1,33 @@
 import React from 'react';
 import styled from "styled-components";
-import Button from "./Button";
 
 const StyledModal = styled.div`
 	cursor: pointer;
-	display:   ${props => props.visible ? 'flex' : 'none'};
+	display:  flex;
 	align-items: center;
 	justify-content: centerM
-	position: fixed; 
-	z-index: 1; 
-	left: 0;
-	top: 0;
 	width: 30%; 
 	height: 30%; 
-	overflow: auto; 
-	background-color: rgb(0,0,0);
+
 	background-color: rgba(0,0,0,0.4);
 	`;
 
-const Modal = ({visible,onClose,onOk,title, children}) => {
+const Modal = ({visible,onCancel,onOk,title, children}) => {
 
-	return (
+	return visible ? (
 		<>
-
-			<StyledModal
-				visible={visible}
-				onClose={onClose}
-				onOk={onOk}
-			>
-
+			<StyledModal>
 				<div id="MyModal">
 					{title}
 					<div id="contentModal">
-						<Button id="okModal" onClick={() => onOk()}>Ok</Button>
-						<Button id="closeModal" onClick={() => onClose()}>Close</Button>
 						<p>{children}</p>
+						<button id="okModal" onClick={onOk}>Ok</button>
+						<button id="closeModal" onClick={onCancel}>Cancel</button>
 					</div>
 				</div>
 			</StyledModal>
 		</>
-	);
+	) : null
 };
 
 

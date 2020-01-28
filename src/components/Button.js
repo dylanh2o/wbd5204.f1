@@ -17,12 +17,13 @@ background: ${props => props.disabled ? '#E8E8E8' : '#FA541C'};
 
 
 // This theme
-const Button = ({disabled = false, type, htmlType, style, children}) => (
+const Button = ({disabled = false, onClick, type, htmlType, style, children}) => (
 	<StyledBtn
 		disabled={disabled}
 		type={type}
 		style={{...style}}
 		htmlType={htmlType}
+		onClick={onClick}
 	>
 		{children}
 	</StyledBtn>
